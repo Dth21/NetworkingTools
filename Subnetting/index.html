@@ -1,0 +1,227 @@
+<!--
+Find the Subnet Mask, the Network Adress, the Broadcast Adress and the Valid Host Adresses, based on a method teached by Neil Anderson in his Udemy course "Cisco CCNA 200-30first – The Complete Guide to Getting Certified".
+For learning purposes. To be used for CISCO CCNA 200-30 exam.
+-->
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Decimal to Binary Convertor</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body id="body">
+    <div class="title">Subnetting Tool</div>
+    <br />
+
+    <div id="user-input">
+      <label for="user-input">Ip Adress / Subnet Prefix Lenght</label><br />
+      <form id="user-input">
+        <input type="number" id="1-ip" min="0" max="255" />
+        <p>.</p>
+        <input type="number" id="2-ip" min="0" max="255" />
+        <p>.</p>
+        <input type="number" id="3-ip" min="0" max="255" />
+        <p>.</p>
+        <input type="number" id="4-ip" min="0" max="255" />
+        <p>/</p>
+        <input type="number" id="subnet-mask" min="8" max="31" />
+      </form>
+    </div>
+
+    <div id="buttons">
+      <button id="calculate" onclick="runProgram()">Calculate</button>
+    </div>
+
+    <div id="octet-show">
+      <table id="table-ip-adress">
+        <tr id="tipDouble">
+          <th>128</th>
+          <th>64</th>
+          <th>32</th>
+          <th>16</th>
+          <th>8</th>
+          <th>4</th>
+          <th>2</th>
+          <th style="border-right-style: 1px solid; border-right-width: 5px">
+            1
+          </th>
+          <th>128</th>
+          <th>64</th>
+          <th>32</th>
+          <th>16</th>
+          <th>8</th>
+          <th>4</th>
+          <th>2</th>
+          <th style="border-right-style: 1px solid; border-right-width: 5px">
+            1
+          </th>
+          <th>128</th>
+          <th>64</th>
+          <th>32</th>
+          <th>16</th>
+          <th>8</th>
+          <th>4</th>
+          <th>2</th>
+          <th style="border-right-style: 1px solid; border-right-width: 5px">
+            1
+          </th>
+          <th>128</th>
+          <th>64</th>
+          <th>32</th>
+          <th>16</th>
+          <th>8</th>
+          <th>4</th>
+          <th>2</th>
+          <th>1</th>
+        </tr>
+        <tr id="tipBinary">
+          <td>0</td>
+          <td>0</td>
+          <td>0</td>
+          <td>0</td>
+          <td>0</td>
+          <td>0</td>
+          <td>0</td>
+          <td style="border-right-style: 1px solid; border-right-width: 5px">
+            0
+          </td>
+          <td>0</td>
+          <td>0</td>
+          <td>0</td>
+          <td>0</td>
+          <td>0</td>
+          <td>0</td>
+          <td>0</td>
+          <td style="border-right-style: 1px solid; border-right-width: 5px">
+            0
+          </td>
+          <td>0</td>
+          <td>0</td>
+          <td>0</td>
+          <td>0</td>
+          <td>0</td>
+          <td>0</td>
+          <td>0</td>
+          <td style="border-right-style: 1px solid; border-right-width: 5px">
+            0
+          </td>
+          <td>0</td>
+          <td>0</td>
+          <td>0</td>
+          <td>0</td>
+          <td>0</td>
+          <td>0</td>
+          <td>0</td>
+          <td>0</td>
+        </tr>
+      </table>
+
+      <table id="table-subnetmask">
+        <tr id="tsDouble">
+          <th>128</th>
+          <th>64</th>
+          <th>32</th>
+          <th>16</th>
+          <th>8</th>
+          <th>4</th>
+          <th>2</th>
+          <th style="border-right-style: 1px solid; border-right-width: 5px">
+            1
+          </th>
+          <th>128</th>
+          <th>64</th>
+          <th>32</th>
+          <th>16</th>
+          <th>8</th>
+          <th>4</th>
+          <th>2</th>
+          <th style="border-right-style: 1px solid; border-right-width: 5px">
+            1
+          </th>
+          <th>128</th>
+          <th>64</th>
+          <th>32</th>
+          <th>16</th>
+          <th>8</th>
+          <th>4</th>
+          <th>2</th>
+          <th style="border-right-style: 1px solid; border-right-width: 5px">
+            1
+          </th>
+          <th>128</th>
+          <th>64</th>
+          <th>32</th>
+          <th>16</th>
+          <th>8</th>
+          <th>4</th>
+          <th>2</th>
+          <th>1</th>
+        </tr>
+        <tr id="tsBinary">
+          <td>0</td>
+          <td>0</td>
+          <td>0</td>
+          <td>0</td>
+          <td>0</td>
+          <td>0</td>
+          <td>0</td>
+          <td style="border-right-style: 1px solid; border-right-width: 5px">
+            0
+          </td>
+          <td>0</td>
+          <td>0</td>
+          <td>0</td>
+          <td>0</td>
+          <td>0</td>
+          <td>0</td>
+          <td>0</td>
+          <td style="border-right-style: 1px solid; border-right-width: 5px">
+            0
+          </td>
+          <td>0</td>
+          <td>0</td>
+          <td>0</td>
+          <td>0</td>
+          <td>0</td>
+          <td>0</td>
+          <td>0</td>
+          <td style="border-right-style: 1px solid; border-right-width: 5px">
+            0
+          </td>
+          <td>0</td>
+          <td>0</td>
+          <td>0</td>
+          <td>0</td>
+          <td>0</td>
+          <td>0</td>
+          <td>0</td>
+          <td>0</td>
+        </tr>
+      </table>
+    </div>
+
+    <div id="answers">
+      <div id="answers-1">
+        <p id="subnet-mask-answer">The subnet mask is:</p>
+        <p id="network-adress-answer">The network adress is:</p>
+        <p id="broadcast-adress-answer">The broadcast adress is:</p>
+        <p id="host-range-answer">The valid host adresses are:</p>
+      </div>
+      <div id="answers-2">
+        <p id="sm"></p>
+        <p id="na"></p>
+        <p id="ba"></p>
+        <p id="ha"></p>
+      </div>
+    </div>
+
+    <script src="octets/octetOne.js"></script>
+    <script src="octets/octetTwo.js"></script>
+    <script src="octets/octetThree.js"></script>
+    <script src="octets/octetFour.js"></script>
+    <script src="populateFields.js"></script>
+    <script src="calculator.js"></script>
+    <script src="decimalToBinaryConverter.js"></script>
+    <script src="script.js"></script>
+  </body>
+</html>

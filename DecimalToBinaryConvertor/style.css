@@ -1,0 +1,71 @@
+html {
+  margin: 0px;
+  height: 100%;
+  width: 100%;
+}
+
+body {
+  font-family: "Raleway", sans-serif;
+  font-size: 16px;
+}
+
+.title {
+  height: 20vh;
+  margin-top: 50px;
+  color: black;
+  font-family: "Raleway", sans-serif;
+  font-size: 62px;
+  font-weight: 800;
+  line-height: 72px;
+  text-align: center;
+  text-transform: uppercase;
+}
+
+#error {
+  font-size: 12px;
+  height: 12px;
+  color: red;
+  font-size-adjust: 0.5;
+  padding: 5px;
+  position: relative;
+  display: inline-block;
+  margin-top: 5px;
+}
+
+.buttons {
+  width: 12%;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: space-between;
+  align-content: center;
+  align-items: center;
+}
+
+.user-input {
+  height: 5vh;
+  display: flex;
+  justify-content: center;
+  align-content: flex-end;
+  flex-wrap: nowrap;
+  align-items: center;
+  flex-direction: column;
+}
+
+#multipliers {
+  height: 30vh;
+  display: flex;
+  align-content: center;
+  justify-content: space-evenly;
+  align-items: center;
+  flex-direction: column;
+}
+
+#binary-code {
+  height: 30vh;
+  display: flex;
+  flex-direction: column;
+  align-content: center;
+  justify-content: space-evenly;
+  align-items: center;
+}
