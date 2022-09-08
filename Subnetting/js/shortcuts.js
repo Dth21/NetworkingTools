@@ -1,4 +1,5 @@
 //checks which field is being edited by user. used for shotcuts
+
 function checkActiveField() {
   formField = document.activeElement;
 }
@@ -19,7 +20,16 @@ function eventListenerNextInputField() {
 addEventListener("keypress", function (a) {
   if (a.key === "Enter") {
     console.log("Enter was pressed");
-    runProgram();
+    if (
+      checkIpValuesIfUnder(firstIp) == "yes" &&
+      checkIpValuesIfUnder(secondIp) == "yes" &&
+      checkIpValuesIfUnder(thirdIp) == "yes" &&
+      checkIpValuesIfUnder(forthIp) == "yes"
+    ) {
+      runProgram();
+    } else {
+      checkForInvalidValues();
+    }
   }
 });
 

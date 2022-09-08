@@ -9,6 +9,14 @@ let thirdIp = document.getElementById("3-ip");
 let forthIp = document.getElementById("4-ip");
 let subnetMask = document.getElementById("subnet-mask");
 
+// it helps with error in special
+let octetsDatabase = [];
+octetsDatabase.push(firstIp);
+octetsDatabase.push(secondIp);
+octetsDatabase.push(thirdIp);
+octetsDatabase.push(forthIp);
+octetsDatabase.push(subnetMask);
+
 function runProgram() {
   if (subnetMask.value >= 1 && subnetMask.value <= 8) {
     octetToSubnet = 1;
@@ -19,11 +27,6 @@ function runProgram() {
   } else if (subnetMask.value > 24 && subnetMask.value < 32) {
     octetToSubnet = 4;
   }
-
-  let a = 0;
-  let b = 0;
-  let c = 0;
-  let d = 0;
 
   calculateOctets();
   populateSubnetMaskTable();

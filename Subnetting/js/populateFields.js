@@ -19,14 +19,29 @@ let lastPartBroadAdd = "";
 let lastPartVH1 = "";
 let lastPartVH2 = "";
 
+let oldSubnetMaskValue = 0;
+
 function populateSubnetMaskTable() {
   for (let psmtRunner = 0; psmtRunner < subnetMask.value; psmtRunner++) {
     binarySubMask[psmtRunner].innerHTML = 1;
   }
-  binarySubMask[subnetMask.value - 1].style =
-    "border-right-style: 1px solid; border-right-width: 10px; border-right-color: green;";
-  doubleSubMask[subnetMask.value - 1].style =
-    "border-right-style: 1px solid; border-right-width: 10px; border-right-color: green;";
+
+  if (programRunTimes < 1) {
+    binarySubMask[subnetMask.value - 1].style =
+      "border-right-style: 1px solid; border-right-width: 10px; border-right-color: green;";
+    doubleSubMask[subnetMask.value - 1].style =
+      "border-right-style: 1px solid; border-right-width: 10px; border-right-color: green;";
+  } else {
+    binarySubMask[oldSubnetMaskValue - 1].style =
+      "border-right-style: 1px solid;";
+    doubleSubMask[oldSubnetMaskValue - 1].style =
+      "border-right-style: 1px solid;";
+
+    binarySubMask[subnetMask.value - 1].style =
+      "border-right-style: 1px solid; border-right-width: 10px; border-right-color: green;";
+    doubleSubMask[subnetMask.value - 1].style =
+      "border-right-style: 1px solid; border-right-width: 10px; border-right-color: green;";
+  }
 }
 
 function populateNetworkTable() {
@@ -42,11 +57,24 @@ function populateNetworkTable() {
   for (pntRunner = 24; pntRunner < 32; pntRunner++) {
     binaryNetwork[pntRunner].innerHTML = octetFour[pntRunner - 24].binary;
   }
+  if (programRunTimes < 1) {
+    binaryNetwork[subnetMask.value - 1].style =
+      "border-right-style: 1px solid; border-right-width: 10px; border-right-color: green;";
+    doubleNetwork[subnetMask.value - 1].style =
+      "border-right-style: 1px solid; border-right-width: 10px; border-right-color: green;";
+  } else {
+    binaryNetwork[oldSubnetMaskValue - 1].style =
+      "border-right-style: 1px solid;";
+    doubleNetwork[oldSubnetMaskValue - 1].style =
+      "border-right-style: 1px solid;";
 
-  binaryNetwork[subnetMask.value - 1].style =
-    "border-right-style: 1px solid; border-right-width: 10px; border-right-color: green;";
-  doubleNetwork[subnetMask.value - 1].style =
-    "border-right-style: 1px solid; border-right-width: 10px; border-right-color: green;";
+    binaryNetwork[subnetMask.value - 1].style =
+      "border-right-style: 1px solid; border-right-width: 10px; border-right-color: green;";
+    doubleNetwork[subnetMask.value - 1].style =
+      "border-right-style: 1px solid; border-right-width: 10px; border-right-color: green;";
+  }
+
+  oldSubnetMaskValue = subnetMask.value;
 }
 
 function populateSubnetMaskAnswer() {

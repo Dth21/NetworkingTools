@@ -23,7 +23,7 @@ body {
 }
 
 #user-input {
-  height: 15%;
+  height: 14%;
   display: flex;
   flex-direction: row;
   align-content: stretch;
@@ -31,6 +31,18 @@ body {
   justify-content: space-evenly;
   font-family: "Times New Roman", Times, serif;
   font-size: 20px;
+}
+
+#errors {
+  height: 1%;
+  display: flex;
+  flex-direction: row;
+  align-content: stretch;
+  align-items: center;
+  justify-content: space-evenly;
+  font-family: "Times New Roman", Times, serif;
+  font-size: 15px;
+  color: red;
 }
 
 #buttons {
