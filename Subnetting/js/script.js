@@ -1,4 +1,6 @@
 let programRunTimes = 0;
+let formField = 0;
+
 let octetToSubnet = 0;
 
 let firstIp = document.getElementById("1-ip");
@@ -31,9 +33,3 @@ function runProgram() {
 
   programRunTimes++;
 }
-
-addEventListener("keypress", function (e) {
-  if (e.key === "Enter") {
-    runProgram();
-  }
-});

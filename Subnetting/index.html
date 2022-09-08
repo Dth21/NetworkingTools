@@ -1,6 +1,23 @@
 <!--
 Find the Subnet Mask, the Network Adress, the Broadcast Adress and the Valid Host Adresses, based on a method teached by Neil Anderson in his Udemy course "Cisco CCNA 200-30first – The Complete Guide to Getting Certified".
 For learning purposes. To be used for CISCO CCNA 200-30 exam.
+
+Shortcuts || Press > Function
+. > advance to the next octet
+/ > go to subnet prefix length
+
+Ctrl + 1 > change 1st octet
+Ctrl + 2 > change 2nd octet
+Ctrl + 3 > change 3rd octet
+Ctrl + 4 > change 4th octet
+
+For testing purposes:
+a. 208.231.102.235 / 27
+b. 112.25.253.123 / 17
+c. 110.235.245.200 / 9
+d. 251.12.56.12 / 4
+
+Check Subnetting.xlsx for valid answers.
 -->
 
 <!DOCTYPE html>
@@ -16,11 +33,32 @@ For learning purposes. To be used for CISCO CCNA 200-30 exam.
     <div id="user-input">
       <label for="user-input">Ip Adress / Subnet Prefix Lenght</label><br />
       <form id="user-input">
-        <input type="number" id="1-ip" min="0" max="255" />
+        <input
+          type="number"
+          id="1-ip"
+          min="0"
+          max="255"
+          oninput="checkActiveField()"
+          onchange="checkActiveField()"
+        />
         <p>.</p>
-        <input type="number" id="2-ip" min="0" max="255" />
+        <input
+          type="number"
+          id="2-ip"
+          min="0"
+          max="255"
+          oninput="checkActiveField()"
+          onchange="checkActiveField()"
+        />
         <p>.</p>
-        <input type="number" id="3-ip" min="0" max="255" />
+        <input
+          type="number"
+          id="3-ip"
+          min="0"
+          max="255"
+          oninput="checkActiveField()"
+          onchange="checkActiveField()"
+        />
         <p>.</p>
         <input type="number" id="4-ip" min="0" max="255" />
         <p>/</p>
@@ -221,9 +259,10 @@ For learning purposes. To be used for CISCO CCNA 200-30 exam.
     <script src="js/octets/octetTwo.js"></script>
     <script src="js/octets/octetThree.js"></script>
     <script src="js/octets/octetFour.js"></script>
+    <script src="js/shortcuts.js"></script>
     <script src="js/calculator.js"></script>
     <script src="js/decimalToBinaryConverter.js"></script>
-    <script src="js/script.js"></script>
     <script src="js/populateFields.js"></script>
+    <script src="js/script.js"></script>
   </body>
 </html>
