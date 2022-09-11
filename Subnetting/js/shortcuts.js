@@ -1,5 +1,13 @@
-//checks which field is being edited by user. used for shotcuts
+function showShortcuts(shown) {
+  informations = document.getElementById("text");
+  if (shown == true) {
+    informations.style.visibility = "visible";
+  } else if (shown == false) {
+    informations.style.visibility = "hidden";
+  }
+}
 
+//checks which field is being edited by user. used for shotcuts
 function checkActiveField() {
   formField = document.activeElement;
 }

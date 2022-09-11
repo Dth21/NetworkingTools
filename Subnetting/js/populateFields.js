@@ -26,12 +26,18 @@ function populateSubnetMaskTable() {
     binarySubMask[psmtRunner].innerHTML = 1;
   }
 
+  console.log(oldSubnetMaskValue);
+
   if (programRunTimes < 1) {
+    console.log("a");
     binarySubMask[subnetMask.value - 1].style =
       "border-right-style: 1px solid; border-right-width: 10px; border-right-color: green;";
     doubleSubMask[subnetMask.value - 1].style =
       "border-right-style: 1px solid; border-right-width: 10px; border-right-color: green;";
-  } else {
+  } else if (
+    [programRunTimes >= 1 && oldSubnetMaskValue != 0 && oldSubnetMaskValue != 1]
+  ) {
+    console.log("b");
     binarySubMask[oldSubnetMaskValue - 1].style =
       "border-right-style: 1px solid;";
     doubleSubMask[oldSubnetMaskValue - 1].style =
@@ -78,8 +84,6 @@ function populateNetworkTable() {
 }
 
 function populateSubnetMaskAnswer() {
-  console.log(234, firstIp.value, secondIp.value, thirdIp.value, forthIp.value);
-
   switch (octetToSubnet) {
     case 1:
       firstPartSubMask = "";
@@ -197,4 +201,86 @@ function populateSubnetMaskAnswer() {
     ? (nnaaAnswer.innerHTML = "N/A")
     : (nnaaAnswer.innerHTML =
         firstPartNextNetwork + octetNextNetworkAddress + lastPartNextNetwork);
+}
+
+function populateFields0Subnet() {
+  for (let psmtf0sRunner = 0; psmtf0sRunner < 32; psmtf0sRunner++) {
+    binarySubMask[psmtf0sRunner].innerHTML = 0;
+  }
+
+  for (let pntf0sRunner = 0; pntf0sRunner < 8; pntf0sRunner++) {
+    binaryNetwork[pntf0sRunner].innerHTML = octetOne[pntf0sRunner].binary;
+  }
+  for (pntf0sRunner = 8; pntf0sRunner < 16; pntf0sRunner++) {
+    binaryNetwork[pntf0sRunner].innerHTML = octetTwo[pntf0sRunner - 8].binary;
+  }
+  for (pntf0sRunner = 16; pntf0sRunner < 24; pntf0sRunner++) {
+    binaryNetwork[pntf0sRunner].innerHTML =
+      octetThree[pntf0sRunner - 16].binary;
+  }
+  for (pntf0sRunner = 24; pntf0sRunner < 32; pntf0sRunner++) {
+    binaryNetwork[pntf0sRunner].innerHTML = octetFour[pntf0sRunner - 24].binary;
+  }
+
+  smAnswer.innerText = "0.0.0.0";
+  naAnswer.innerText = "0.0.0.0";
+  baAnswer.innerText = "255.255.255.255";
+  haAnswer.innerText = "0.0.0.1 - 255.255.255.254";
+  nnaaAnswer.innerText = "255.255.255.255";
+
+  oldSubnetMaskValue = subnetMask.value;
+}
+
+function populateField32Subnet() {
+  for (
+    let psmtf32sRunner = 0;
+    psmtf32sRunner < subnetMask.value;
+    psmtf32sRunner++
+  ) {
+    binarySubMask[psmtf32sRunner].innerHTML = 1;
+  }
+
+  for (let pntf32sRunner = 0; pntf32sRunner < 8; pntf32sRunner++) {
+    binaryNetwork[pntf32sRunner].innerHTML = octetOne[pntf32sRunner].binary;
+  }
+  for (pntf32sRunner = 8; pntf32sRunner < 16; pntf32sRunner++) {
+    binaryNetwork[pntf32sRunner].innerHTML = octetTwo[pntf32sRunner - 8].binary;
+  }
+  for (pntf32sRunner = 16; pntf32sRunner < 24; pntf32sRunner++) {
+    binaryNetwork[pntf32sRunner].innerHTML =
+      octetThree[pntf32sRunner - 16].binary;
+  }
+  for (pntf32sRunner = 24; pntf32sRunner < 32; pntf32sRunner++) {
+    binaryNetwork[pntf32sRunner].innerHTML =
+      octetFour[pntf32sRunner - 24].binary;
+  }
+
+  smAnswer.innerText =
+    firstIp.value +
+    "." +
+    secondIp.value +
+    "." +
+    thirdIp.value +
+    "." +
+    forthIp.value;
+  naAnswer.innerText =
+    firstIp.value +
+    "." +
+    secondIp.value +
+    "." +
+    thirdIp.value +
+    "." +
+    forthIp.value;
+  baAnswer.innerText =
+    firstIp.value +
+    "." +
+    secondIp.value +
+    "." +
+    thirdIp.value +
+    "." +
+    forthIp.value;
+  haAnswer.innerText = "N/A";
+  nnaaAnswer.innerText = "N/A";
+
+  oldSubnetMaskValue = subnetMask.value;
 }

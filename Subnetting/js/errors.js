@@ -1,7 +1,9 @@
 let error = document.getElementById("error");
 let errors = document.getElementById("errors");
+let errorImage = document.getElementById("image-error");
 
 let errorOctet = 0;
+let blankForms = 0;
 
 // shows error messages based on what octet needs to be changed
 function errorDatabase(error) {
@@ -14,15 +16,14 @@ function errorDatabase(error) {
   } else if (error == forthIp) {
     return "The value in the forth octet is wrong. Please insert a value between 0-255!";
   } else if (error == subnetMask) {
-    return "Please input a valid subnet prefix length (0-31)";
-  } else if (error == errors) {
-    return "Please, solve this problem before going forward!";
+    return "The value of the subnet address prefix is wrong. Please insert a value between 0-32!";
   }
 }
 
-// shows error and sends user to change the invalid octet
+// shows error and sends user to edit the invalid octet
 function showError(fieldToFocus) {
   error.style.visibility = "visible";
+  errorImage.style.visibility = "visible";
   error.innerText = errorDatabase(fieldToFocus);
   fieldToFocus.focus();
 }
@@ -36,7 +37,7 @@ function checkIpValuesIfUnder(ipValueToCheck) {
 }
 
 function checkSubnetValuesIfUnder(subValueToCheck) {
-  if (subValueToCheck.value < 32) {
+  if (subValueToCheck.value <= 32) {
     return "yes";
   } else {
     return "no";
@@ -61,6 +62,7 @@ function checkForInvalidValues() {
       errorOctet.focus();
     } else {
       error.style.visibility = "hidden";
+      errorImage.style.visibility = "hidden";
     }
   }
 }

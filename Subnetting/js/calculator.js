@@ -40,13 +40,6 @@ function calculateAnswers() {
   octetNetworkAddress = 0;
   let referenceOctet = [];
 
-  /*
-  a = ~~firstIp.value;
-  b = ~~secondIp.value;
-  c = ~~thirdIp.value;
-  d = ~~forthIp.value;
-  */
-
   switch (octetToSubnet) {
     case 1:
       referenceOctet = octetOne;

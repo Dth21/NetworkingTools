@@ -20,6 +20,9 @@ c. 110.235.245.200 / 9
 d. 251.12.56.12 / 4
 
 Check Subnetting.xlsx for valid answers.
+
+
+Image Source: https://pngimg.com/
 -->
 
 <!DOCTYPE html>
@@ -33,7 +36,7 @@ Check Subnetting.xlsx for valid answers.
     <br />
 
     <div id="user-input">
-      <label for="user-input">Ip Adress / Subnet Prefix Lenght</label><br />
+      <label for="user-input">Ip Adress / Subnet Prefix Lenght</label>
       <form id="user-input" onchange="checkForInvalidValues()">
         <input
           type="number"
@@ -66,6 +69,11 @@ Check Subnetting.xlsx for valid answers.
     </div>
 
     <div id="errors">
+      <img
+        id="image-error"
+        src="img\exclamation_mark.png"
+        alt="ExclamationMark"
+      />
       <p id="error"></p>
     </div>
 
@@ -244,10 +252,10 @@ Check Subnetting.xlsx for valid answers.
     <div id="answers">
       <div id="answers-1">
         <p id="subnet-mask-answer">The subnet mask is:</p>
-        <p id="network-adress-answer">The network adress is:</p>
-        <p id="broadcast-adress-answer">The broadcast adress is:</p>
-        <p id="host-range-answer">The valid host adresses are:</p>
-        <p id="next-network-address-answer">The next network address:</p>
+        <p id="network-adress-answer">The network address is:</p>
+        <p id="broadcast-adress-answer">The broadcast address is:</p>
+        <p id="host-range-answer">The valid host addresses are:</p>
+        <p id="next-network-address-answer">The next network address is:</p>
       </div>
       <div id="answers-2">
         <p id="sm"></p>
@@ -256,6 +264,25 @@ Check Subnetting.xlsx for valid answers.
         <p id="ha"></p>
         <p id="nnaa"></p>
       </div>
+    </div>
+    <div id="informations">
+      <div id="text">
+        <div id="shortcuts">
+          <div style="font-weight: bold">Shortcuts:</div>
+          <div>* "." > edit the next octet.</div>
+          <div>* "/" > edit the subnet prefix length.</div>
+          <div>* "Shift+(1-4)" > edit a specific octet.</div>
+          <div>* "Enter" > run program</div>
+        </div>
+        <div id="copyrght">(c) Elisei Florea</div>
+      </div>
+      <img
+        id="image-question"
+        src="img\question_mark.png"
+        alt="QuestionMark"
+        onmouseover="showShortcuts(true)"
+        onmouseout="showShortcuts(false)"
+      />
     </div>
 
     <script src="js/octets/octetOne.js"></script>
