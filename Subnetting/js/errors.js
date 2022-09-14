@@ -7,16 +7,24 @@ let blankForms = 0;
 
 // shows error messages based on what octet needs to be changed
 function errorDatabase(error) {
-  if (error == firstIp) {
-    return "The value in the first octet is wrong. Please insert a value between 0-255!";
-  } else if (error == secondIp) {
-    return "The value in the second octet is wrong. Please insert a value between 0-255!";
-  } else if (error == thirdIp) {
-    return "The value in the third octet is wrong. Please insert a value between 0-255!";
-  } else if (error == forthIp) {
-    return "The value in the forth octet is wrong. Please insert a value between 0-255!";
-  } else if (error == subnetMask) {
+  if (error == updateOctetsDatabase()[0]) {
+    return "The value of the first octet is wrong. Please insert a value between 0-255!";
+  } else if (error == updateOctetsDatabase()[1]) {
+    return "The value of the second octet is wrong. Please insert a value between 0-255!";
+  } else if (error == updateOctetsDatabase()[2]) {
+    return "The value  the third octet is wrong. Please insert a value between 0-255!";
+  } else if (error == updateOctetsDatabase()[3]) {
+    return "The value of the forth octet is wrong. Please insert a value between 0-255!";
+  } else if (error == updateOctetsDatabase()[4]) {
     return "The value of the subnet address prefix is wrong. Please insert a value between 0-32!";
+  } else if (error == updateOctetsDatabase()[5]) {
+    return "The value of the first octet of subnet mask address is wrong.";
+  } else if (error == updateOctetsDatabase()[6]) {
+    return "The value of the second octet of subnet mask address is wrong.";
+  } else if (error == updateOctetsDatabase()[7]) {
+    return "The value of the third octet of subnet mask address is wrong.";
+  } else if (error == updateOctetsDatabase()[8]) {
+    return "The value of the forth octet of subnet mask address is wrong.";
   }
 }
 
@@ -36,8 +44,19 @@ function checkIpValuesIfUnder(ipValueToCheck) {
   }
 }
 
+function checkSubnetPrefixIfUnder(subPrefixToCheck) {
+  if (subPrefixToCheck.value <= 32) {
+    return "yes";
+  } else {
+    return "no";
+  }
+}
+
 function checkSubnetValuesIfUnder(subValueToCheck) {
-  if (subValueToCheck.value <= 32) {
+  if (
+    createPossibleOctetSubnetMaskDb().includes(subValueToCheck.value) ||
+    subValueToCheck.value == ""
+  ) {
     return "yes";
   } else {
     return "no";
@@ -48,21 +67,29 @@ function checkSubnetValuesIfUnder(subValueToCheck) {
 function checkForInvalidValues() {
   errorOctet = 0;
 
-  for (let cfidRunner = 0; cfidRunner < 4; cfidRunner++) {
-    checkIpValuesIfUnder(octetsDatabase[cfidRunner]) == "no"
-      ? (errorOctet = octetsDatabase[cfidRunner])
+  for (let cfivRunnerA = 0; cfivRunnerA < 4; cfivRunnerA++) {
+    checkIpValuesIfUnder(updateOctetsDatabase()[cfivRunnerA]) == "no"
+      ? (errorOctet = updateOctetsDatabase()[cfivRunnerA])
       : "";
+  }
 
-    checkSubnetValuesIfUnder(octetsDatabase[4]) == "no"
-      ? (errorOctet = octetsDatabase[4])
+  if (checkSubnettingChoice() == "prefix") {
+    checkSubnetPrefixIfUnder(updateOctetsDatabase()[4]) == "no"
+      ? (errorOctet = updateOctetsDatabase()[4])
       : "";
-
-    if (errorOctet != 0) {
-      showError(errorOctet);
-      errorOctet.focus();
-    } else {
-      error.style.visibility = "hidden";
-      errorImage.style.visibility = "hidden";
+  } else {
+    for (let cfivRunnerB = 5; cfivRunnerB <= 8; cfivRunnerB++) {
+      checkSubnetValuesIfUnder(updateOctetsDatabase()[cfivRunnerB]) == "no"
+        ? (errorOctet = updateOctetsDatabase()[cfivRunnerB])
+        : "";
     }
+  }
+
+  if (errorOctet != 0) {
+    showError(errorOctet);
+    errorOctet.focus();
+  } else {
+    error.style.visibility = "hidden";
+    errorImage.style.visibility = "hidden";
   }
 }

@@ -21,36 +21,8 @@ let lastPartVH2 = "";
 
 let oldSubnetMaskValue = 0;
 
-function populateSubnetMaskTable() {
-  for (let psmtRunner = 0; psmtRunner < subnetMask.value; psmtRunner++) {
-    binarySubMask[psmtRunner].innerHTML = 1;
-  }
-
-  console.log(oldSubnetMaskValue);
-
-  if (programRunTimes < 1) {
-    console.log("a");
-    binarySubMask[subnetMask.value - 1].style =
-      "border-right-style: 1px solid; border-right-width: 10px; border-right-color: green;";
-    doubleSubMask[subnetMask.value - 1].style =
-      "border-right-style: 1px solid; border-right-width: 10px; border-right-color: green;";
-  } else if (
-    [programRunTimes >= 1 && oldSubnetMaskValue != 0 && oldSubnetMaskValue != 1]
-  ) {
-    console.log("b");
-    binarySubMask[oldSubnetMaskValue - 1].style =
-      "border-right-style: 1px solid;";
-    doubleSubMask[oldSubnetMaskValue - 1].style =
-      "border-right-style: 1px solid;";
-
-    binarySubMask[subnetMask.value - 1].style =
-      "border-right-style: 1px solid; border-right-width: 10px; border-right-color: green;";
-    doubleSubMask[subnetMask.value - 1].style =
-      "border-right-style: 1px solid; border-right-width: 10px; border-right-color: green;";
-  }
-}
-
 function populateNetworkTable() {
+  // populate network table (the upper table on page) based on the binary values of the ip address' octets
   for (let pntRunner = 0; pntRunner < 8; pntRunner++) {
     binaryNetwork[pntRunner].innerHTML = octetOne[pntRunner].binary;
   }
@@ -63,26 +35,214 @@ function populateNetworkTable() {
   for (pntRunner = 24; pntRunner < 32; pntRunner++) {
     binaryNetwork[pntRunner].innerHTML = octetFour[pntRunner - 24].binary;
   }
+
+  // adds a green line on the right of the prefix value cell when prefix >0 and on the left when prefix = 0
   if (programRunTimes < 1) {
-    binaryNetwork[subnetMask.value - 1].style =
-      "border-right-style: 1px solid; border-right-width: 10px; border-right-color: green;";
-    doubleNetwork[subnetMask.value - 1].style =
-      "border-right-style: 1px solid; border-right-width: 10px; border-right-color: green;";
+    //if actual sm !=o >> create green borded
+    if (subnetMaskValue != 0) {
+      binaryNetwork[subnetMaskValue - 1].style =
+        "border-right-style: 1px solid; border-right-width: 10px; border-right-color: green;";
+      doubleNetwork[subnetMaskValue - 1].style =
+        "border-right-style: 1px solid; border-right-width: 10px; border-right-color: green;";
+
+      //if actual sm = 0 >>
+    } else {
+      binaryNetwork[subnetMaskValue].style =
+        "border-left-style: 1px solid; border-left-width: 10px; border-left-color: green;";
+      doubleNetwork[subnetMaskValue].style =
+        "border-left-style: 1px solid; border-left-width: 10px; border-left-color: green;";
+    }
+
+    //if program is run > 1
   } else {
-    binaryNetwork[oldSubnetMaskValue - 1].style =
-      "border-right-style: 1px solid;";
-    doubleNetwork[oldSubnetMaskValue - 1].style =
-      "border-right-style: 1px solid;";
+    //if actual sm !=0
+    if (subnetMaskValue != 0) {
+      // all cases except some (old sm = 0,8,16,24) & actual sm !=0
+      if (
+        oldSubnetMaskValue != 0 &&
+        oldSubnetMaskValue != 24 &&
+        oldSubnetMaskValue != 16 &&
+        oldSubnetMaskValue != 8
+      ) {
+        binaryNetwork[oldSubnetMaskValue - 1].style =
+          "border-right-style: 1px solid;";
+        doubleNetwork[oldSubnetMaskValue - 1].style =
+          "border-right-style: 1px solid;";
 
-    binaryNetwork[subnetMask.value - 1].style =
-      "border-right-style: 1px solid; border-right-width: 10px; border-right-color: green;";
-    doubleNetwork[subnetMask.value - 1].style =
-      "border-right-style: 1px solid; border-right-width: 10px; border-right-color: green;";
+        binaryNetwork[subnetMaskValue - 1].style =
+          "border-right-style: 1px solid; border-right-width: 10px; border-right-color: green;";
+        doubleNetwork[subnetMaskValue - 1].style =
+          "border-right-style: 1px solid; border-right-width: 10px; border-right-color: green;";
+
+        // when old sm = 0 & actual sm !=0
+      } else if (oldSubnetMaskValue == 0) {
+        binaryNetwork[oldSubnetMaskValue].style =
+          "border-left-style: 1px solid;";
+        doubleNetwork[oldSubnetMaskValue].style =
+          "border-left-style: 1px solid;";
+
+        binaryNetwork[subnetMaskValue - 1].style =
+          "border-right-style: 1px solid; border-right-width: 10px; border-right-color: green;";
+        doubleNetwork[subnetMaskValue - 1].style =
+          "border-right-style: 1px solid; border-right-width: 10px; border-right-color: green;";
+        // all exception cases (old sm = 8,16,24) & actual sm !=0
+      } else {
+        binaryNetwork[oldSubnetMaskValue - 1].style =
+          "border-right-style: 1px solid; border-right-width: 5px";
+        doubleNetwork[oldSubnetMaskValue - 1].style =
+          "border-right-style: 1px solid; border-right-width: 5px";
+
+        binaryNetwork[subnetMaskValue - 1].style =
+          "border-right-style: 1px solid; border-right-width: 10px; border-right-color: green;";
+        doubleNetwork[subnetMaskValue - 1].style =
+          "border-right-style: 1px solid; border-right-width: 10px; border-right-color: green;";
+      }
+
+      // if actual sm == 0
+    } else {
+      // all cases except some (old sm = 0,8,16,24) & actual sm =0
+      if (
+        oldSubnetMaskValue != 0 &&
+        oldSubnetMaskValue != 24 &&
+        oldSubnetMaskValue != 16 &&
+        oldSubnetMaskValue != 8
+      ) {
+        binaryNetwork[oldSubnetMaskValue - 1].style =
+          "border-right-style: 1px solid;";
+        doubleNetwork[oldSubnetMaskValue - 1].style =
+          "border-right-style: 1px solid;";
+
+        binaryNetwork[subnetMaskValue].style =
+          "border-left-style: 1px solid; border-left-width: 10px; border-left-color: green;";
+        doubleNetwork[subnetMaskValue].style =
+          "border-left-style: 1px solid; border-left-width: 10px; border-left-color: green;";
+        // when old sm = 0 & actual sm = 0
+      } else if (oldSubnetMaskValue == 0) {
+        // all exception cases (old sm = 8,16,24) & actual sm = 0
+      } else {
+        binaryNetwork[oldSubnetMaskValue - 1].style =
+          "border-right-style: 1px solid; border-right-width: 5px";
+        doubleNetwork[oldSubnetMaskValue - 1].style =
+          "border-right-style: 1px solid; border-right-width: 5px";
+
+        binaryNetwork[subnetMaskValue].style =
+          "border-left-style: 1px solid; border-left-width: 10px; border-left-color: green;";
+        doubleNetwork[subnetMaskValue].style =
+          "border-left-style: 1px solid; border-left-width: 10px; border-left-color: green;";
+      }
+    }
   }
-
-  oldSubnetMaskValue = subnetMask.value;
 }
 
+function populateSubnetMaskTable() {
+  // populate subnet mask table (lower on page) with one until it reaches the subnet prefix cell
+  for (let psmtRunner = 0; psmtRunner < subnetMaskValue; psmtRunner++) {
+    binarySubMask[psmtRunner].innerHTML = 1;
+  }
+
+  console.log(001, "Old subnet mask value is " + oldSubnetMaskValue);
+
+  // adds a green line on the right of the prefix value cell when prefix >0 and on the left when prefix = 0
+  if (programRunTimes < 1) {
+    //if actual sm !=o >> create green borded
+    if (subnetMaskValue != 0) {
+      binarySubMask[subnetMaskValue - 1].style =
+        "border-right-style: 1px solid; border-right-width: 10px; border-right-color: green;";
+      doubleSubMask[subnetMaskValue - 1].style =
+        "border-right-style: 1px solid; border-right-width: 10px; border-right-color: green;";
+
+      //if actual sm = 0 >>
+    } else {
+      binarySubMask[subnetMaskValue].style =
+        "border-left-style: 1px solid; border-left-width: 10px; border-left-color: green;";
+      doubleSubMask[subnetMaskValue].style =
+        "border-left-style: 1px solid; border-left-width: 10px; border-left-color: green;";
+    }
+
+    //if program is run > 1
+  } else {
+    //if actual sm !=0
+    if (subnetMaskValue != 0) {
+      // all cases except some (old sm = 0,8,16,24) & actual sm !=0
+      if (
+        oldSubnetMaskValue != 0 &&
+        oldSubnetMaskValue != 24 &&
+        oldSubnetMaskValue != 16 &&
+        oldSubnetMaskValue != 8
+      ) {
+        binarySubMask[oldSubnetMaskValue - 1].style =
+          "border-right-style: 1px solid;";
+        doubleSubMask[oldSubnetMaskValue - 1].style =
+          "border-right-style: 1px solid;";
+
+        binarySubMask[subnetMaskValue - 1].style =
+          "border-right-style: 1px solid; border-right-width: 10px; border-right-color: green;";
+        doubleSubMask[subnetMaskValue - 1].style =
+          "border-right-style: 1px solid; border-right-width: 10px; border-right-color: green;";
+
+        // when old sm = 0 & actual sm !=0
+      } else if (oldSubnetMaskValue == 0) {
+        binarySubMask[oldSubnetMaskValue].style =
+          "border-left-style: 1px solid;";
+        doubleSubMask[oldSubnetMaskValue].style =
+          "border-left-style: 1px solid;";
+
+        binarySubMask[subnetMaskValue - 1].style =
+          "border-right-style: 1px solid; border-right-width: 10px; border-right-color: green;";
+        doubleSubMask[subnetMaskValue - 1].style =
+          "border-right-style: 1px solid; border-right-width: 10px; border-right-color: green;";
+        // all exception cases (old sm = 8,16,24) & actual sm !=0
+      } else {
+        binarySubMask[oldSubnetMaskValue - 1].style =
+          "border-right-style: 1px solid; border-right-width: 5px";
+        doubleSubMask[oldSubnetMaskValue - 1].style =
+          "border-right-style: 1px solid; border-right-width: 5px";
+
+        binarySubMask[subnetMaskValue - 1].style =
+          "border-right-style: 1px solid; border-right-width: 10px; border-right-color: green;";
+        doubleSubMask[subnetMaskValue - 1].style =
+          "border-right-style: 1px solid; border-right-width: 10px; border-right-color: green;";
+      }
+
+      // if actual sm == 0
+    } else {
+      // all cases except some (old sm = 0,8,16,24) & actual sm =0
+      if (
+        oldSubnetMaskValue != 0 &&
+        oldSubnetMaskValue != 24 &&
+        oldSubnetMaskValue != 16 &&
+        oldSubnetMaskValue != 8
+      ) {
+        binarySubMask[oldSubnetMaskValue - 1].style =
+          "border-right-style: 1px solid;";
+        doubleSubMask[oldSubnetMaskValue - 1].style =
+          "border-right-style: 1px solid;";
+
+        binarySubMask[subnetMaskValue].style =
+          "border-left-style: 1px solid; border-left-width: 10px; border-left-color: green;";
+        doubleSubMask[subnetMaskValue].style =
+          "border-left-style: 1px solid; border-left-width: 10px; border-left-color: green;";
+        // when old sm = 0 & actual sm = 0
+      } else if (oldSubnetMaskValue == 0) {
+        // all exception cases (old sm = 8,16,24) & actual sm = 0
+      } else {
+        binarySubMask[oldSubnetMaskValue - 1].style =
+          "border-right-style: 1px solid; border-right-width: 5px";
+        doubleSubMask[oldSubnetMaskValue - 1].style =
+          "border-right-style: 1px solid; border-right-width: 5px";
+
+        binarySubMask[subnetMaskValue].style =
+          "border-left-style: 1px solid; border-left-width: 10px; border-left-color: green;";
+        doubleSubMask[subnetMaskValue].style =
+          "border-left-style: 1px solid; border-left-width: 10px; border-left-color: green;";
+      }
+    }
+  }
+
+  oldSubnetMaskValue = subnetMaskValue;
+}
+
+//populates row with answers when subnet != 0 / 32
 function populateSubnetMaskAnswer() {
   switch (octetToSubnet) {
     case 1:
@@ -110,7 +270,7 @@ function populateSubnetMaskAnswer() {
       firstPartSubMask = "255.";
       lastPartSubMask = ".0.0";
 
-      firstPartNetBroadVHAdd = firstIp.value + ".";
+      firstPartNetBroadVHAdd = updateOctetsDatabase()[0].value + ".";
 
       lastPartNetAdd = ".0.0";
 
@@ -118,7 +278,8 @@ function populateSubnetMaskAnswer() {
 
       isUnder == true
         ? (firstPartNextNetwork = firstPartNetBroadVHAdd)
-        : (firstPartNextNetwork = "" + (~~firstIp.value + 1) + ".");
+        : (firstPartNextNetwork =
+            "" + (~~updateOctetsDatabase()[0].value + 1) + ".");
 
       lastPartNextNetwork = lastPartNetAdd;
 
@@ -131,14 +292,21 @@ function populateSubnetMaskAnswer() {
       firstPartSubMask = "255.255.";
       lastPartSubMask = ".0";
 
-      firstPartNetBroadVHAdd = firstIp.value + "." + secondIp.value + ".";
+      firstPartNetBroadVHAdd =
+        updateOctetsDatabase()[0].value +
+        "." +
+        updateOctetsDatabase()[1].value +
+        ".";
       lastPartNetAdd = ".0";
       lastPartBroadAdd = ".255";
 
       isUnder == true
         ? (firstPartNextNetwork = firstPartNetBroadVHAdd)
         : (firstPartNextNetwork =
-            firstIp.value + "." + (~~secondIp.value + 1) + ".");
+            updateOctetsDatabase()[0].value +
+            "." +
+            (~~updateOctetsDatabase()[1].value + 1) +
+            ".");
 
       lastPartNextNetwork = lastPartNetAdd;
 
@@ -151,18 +319,23 @@ function populateSubnetMaskAnswer() {
       lastPartSubMask = "";
 
       firstPartNetBroadVHAdd =
-        firstIp.value + "." + secondIp.value + "." + thirdIp.value + ".";
+        updateOctetsDatabase()[0].value +
+        "." +
+        updateOctetsDatabase()[1].value +
+        "." +
+        updateOctetsDatabase()[2].value +
+        ".";
       lastPartNetAdd = "";
       lastPartBroadAdd = "";
 
       isUnder == true
         ? (firstPartNextNetwork = firstPartNetBroadVHAdd)
         : (firstPartNextNetwork =
-            firstIp.value +
+            updateOctetsDatabase()[0].value +
             "." +
-            secondIp.value +
+            updateOctetsDatabase()[1].value +
             "." +
-            (~~thirdIp.value + 1) +
+            (~~updateOctetsDatabase()[2].value + 1) +
             ".");
 
       lastPartNextNetwork = lastPartNetAdd;
@@ -203,6 +376,7 @@ function populateSubnetMaskAnswer() {
         firstPartNextNetwork + octetNextNetworkAddress + lastPartNextNetwork);
 }
 
+//populates row with answers when subnet = 0
 function populateFields0Subnet() {
   for (let psmtf0sRunner = 0; psmtf0sRunner < 32; psmtf0sRunner++) {
     binarySubMask[psmtf0sRunner].innerHTML = 0;
@@ -228,13 +402,14 @@ function populateFields0Subnet() {
   haAnswer.innerText = "0.0.0.1 - 255.255.255.254";
   nnaaAnswer.innerText = "255.255.255.255";
 
-  oldSubnetMaskValue = subnetMask.value;
+  oldSubnetMaskValue = subnetMaskValue;
 }
 
+//populates row with answers when subnet = 32
 function populateField32Subnet() {
   for (
     let psmtf32sRunner = 0;
-    psmtf32sRunner < subnetMask.value;
+    psmtf32sRunner < subnetMaskValue;
     psmtf32sRunner++
   ) {
     binarySubMask[psmtf32sRunner].innerHTML = 1;
@@ -256,31 +431,38 @@ function populateField32Subnet() {
   }
 
   smAnswer.innerText =
-    firstIp.value +
+    updateOctetsDatabase()[0].value +
     "." +
-    secondIp.value +
+    updateOctetsDatabase()[1].value +
     "." +
-    thirdIp.value +
+    updateOctetsDatabase()[2].value +
     "." +
-    forthIp.value;
+    updateOctetsDatabase()[3].value;
   naAnswer.innerText =
-    firstIp.value +
+    updateOctetsDatabase()[0].value +
     "." +
-    secondIp.value +
+    updateOctetsDatabase()[1].value +
     "." +
-    thirdIp.value +
+    updateOctetsDatabase()[2].value +
     "." +
-    forthIp.value;
+    updateOctetsDatabase()[3].value;
   baAnswer.innerText =
-    firstIp.value +
+    updateOctetsDatabase()[0].value +
     "." +
-    secondIp.value +
+    updateOctetsDatabase()[1].value +
     "." +
-    thirdIp.value +
+    updateOctetsDatabase()[2].value +
     "." +
-    forthIp.value;
+    updateOctetsDatabase()[3].value;
   haAnswer.innerText = "N/A";
   nnaaAnswer.innerText = "N/A";
 
-  oldSubnetMaskValue = subnetMask.value;
+  oldSubnetMaskValue = subnetMaskValue;
+}
+
+function populateShortcuts() {
+  let subnetMaskShortcut = document.getElementById("shortcuts-subnet-mask");
+  checkSubnettingChoice() == "prefix"
+    ? (subnetMaskShortcut.style.display = "none")
+    : (subnetMaskShortcut.style.display = "flex");
 }

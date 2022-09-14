@@ -2,17 +2,6 @@
 Find the Subnet Mask, the Network Adress, the Broadcast Adress and the Valid Host Adresses, based on a method teached by Neil Anderson in his Udemy course "Cisco CCNA 200-30first – The Complete Guide to Getting Certified".
 For learning purposes. To be used for CISCO CCNA 200-30 exam.
 
-Shortcuts || Press > Function
-. > advance to the next octet
-/ > go to subnet prefix length
-
-Shift + 1 > change 1st octet
-Shift + 2 > change 2nd octet
-Shift + 3 > change 3rd octet
-Shift + 4 > change 4th octet
-
-
-
 For testing purposes:
 a. 208.231.102.235 / 27
 b. 112.25.253.123 / 17
@@ -20,7 +9,6 @@ c. 110.235.245.200 / 9
 d. 251.12.56.12 / 4
 
 Check Subnetting.xlsx for valid answers.
-
 
 Image Source: https://pngimg.com/
 -->
@@ -36,7 +24,19 @@ Image Source: https://pngimg.com/
     <br />
 
     <div id="user-input">
-      <label for="user-input">Ip Adress / Subnet Prefix Lenght</label>
+      <label for="subnet-radio">Subnet Form:</label>
+      <form id="subnet-radio" onchange="populateSubnetForm()">
+        <div>
+          <input type="radio" name="subnetChoice" value="prefix" checked />
+          <label for="subnet-prefix">Prefix</label>
+        </div>
+        <div>
+          <input type="radio" name="subnetChoice" value="address" />
+          <label for="subnet-address">Address</label>
+        </div>
+      </form>
+
+      <label for="user-input">Ip Adress / Subnet</label>
       <form id="user-input" onchange="checkForInvalidValues()">
         <input
           type="number"
@@ -64,7 +64,7 @@ Image Source: https://pngimg.com/
         <p>.</p>
         <input type="number" id="4-ip" min="0" max="255" />
         <p>/</p>
-        <input type="number" id="subnet-mask" min="8" max="31" />
+        <div id="prefix-vs-address"></div>
       </form>
     </div>
 
@@ -271,7 +271,10 @@ Image Source: https://pngimg.com/
           <div style="font-weight: bold">Shortcuts:</div>
           <div>* "." > edit the next octet.</div>
           <div>* "/" > edit the subnet prefix length.</div>
-          <div>* "Shift+(1-4)" > edit a specific octet.</div>
+          <div>* "Shift+(1-4)" > edit a specific Ip Address octet.</div>
+          <div id="shortcuts-subnet-mask">
+            * "Shift+(5-8)" > edit a specific Subnet Mask Address octet.
+          </div>
           <div>* "Enter" > run program</div>
         </div>
         <div id="copyrght">(c) Elisei Florea</div>
@@ -285,6 +288,7 @@ Image Source: https://pngimg.com/
       />
     </div>
 
+    <script src="js/subnet_address_vs_prefix.js"></script>
     <script src="js/octets/octetOne.js"></script>
     <script src="js/octets/octetTwo.js"></script>
     <script src="js/octets/octetThree.js"></script>
