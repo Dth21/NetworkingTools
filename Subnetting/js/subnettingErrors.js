@@ -1,9 +1,7 @@
 let error = document.getElementById("error");
-let errors = document.getElementById("errors");
 let errorImage = document.getElementById("image-error");
 
 let errorOctet = 0;
-let blankForms = 0;
 
 // shows error messages based on what octet needs to be changed
 function errorDatabase(error) {

@@ -9,7 +9,6 @@ let octetSubnetMask = 0;
 let octetNetworkAddress = 0;
 let octetBroadcastAddress = 0;
 let octetNextNetworkAddress = 0;
-let newOctet = 0;
 
 let isOver = false;
 let isUnder = false;

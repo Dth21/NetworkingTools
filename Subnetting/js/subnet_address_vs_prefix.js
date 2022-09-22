@@ -1,4 +1,5 @@
 let userSubnetFormChanges = 0;
+let subnetMaskAnswer = document.getElementById("subnet-mask-answer");
 
 // checks and returns if user has subnet mask address / prefix
 function checkSubnettingChoice() {
@@ -19,7 +20,12 @@ function checkSubnettingChoice() {
 }
 
 // creates subnet mask forms based on user choice
-function populateSubnetForm() {
+function completeHtmlPage() {
+  //complete answer text based on user choice (address / prefix)
+  checkSubnettingChoice() == "prefix"
+    ? (subnetMaskAnswer.innerText = "The subnet mask address is:")
+    : (subnetMaskAnswer.innerText = "The subnet mask prefix is:");
+
   //create div if subnet mask = prefix
   let subnetDivPrefix = document.createElement("div");
   subnetDivPrefix.setAttribute("id", "subnet-prefix");
@@ -92,6 +98,11 @@ function populateSubnetForm() {
     } else if (checkSubnettingChoice() == "address") {
       subnetDiv.appendChild(subnetDivAddress);
     }
+    smAnswer.innerText = "";
+    naAnswer.innerText = "";
+    baAnswer.innerText = "";
+    haAnswer.innerText = "";
+    nnaaAnswer.innerText = "";
   }
 
   updateOctetsDatabase();

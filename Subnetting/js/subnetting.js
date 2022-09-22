@@ -1,5 +1,5 @@
 //creates a form based on user choice: subnet mask address / prefix
-populateSubnetForm();
+completeHtmlPage();
 
 //shows for how many times program runned. Helps with populating fields.
 let programRunTimes = 0;

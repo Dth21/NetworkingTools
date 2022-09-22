@@ -1,8 +1,8 @@
 let doubleSubMask = document.getElementById("table-subnetmask").rows[0].cells;
 let binarySubMask = document.getElementById("table-subnetmask").rows[1].cells;
 
-let doubleNetwork = document.getElementById("table-ip-adress").rows[0].cells;
-let binaryNetwork = document.getElementById("table-ip-adress").rows[1].cells;
+let doubleNetwork = document.getElementById("table-ip-address").rows[0].cells;
+let binaryNetwork = document.getElementById("table-ip-address").rows[1].cells;
 
 let firstPartIp = "";
 let lastPartIp = "";
@@ -346,7 +346,11 @@ function populateSubnetMaskAnswer() {
       break;
   }
 
-  smAnswer.innerText = firstPartSubMask + octetSubnetMask + lastPartSubMask;
+  checkSubnettingChoice() == "prefix"
+    ? (smAnswer.innerText =
+        firstPartSubMask + octetSubnetMask + lastPartSubMask)
+    : (smAnswer.innerText = "/" + subnetMaskValue);
+
   naAnswer.innerText =
     firstPartNetBroadVHAdd + octetNetworkAddress + lastPartNetAdd;
   baAnswer.innerText =

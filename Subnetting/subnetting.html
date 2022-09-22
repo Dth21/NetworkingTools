@@ -16,16 +16,16 @@ Image Source: https://pngimg.com/
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Decimal to Binary Convertor</title>
-    <link rel="stylesheet" href="style.css" />
+    <title>SubnettingTool_01</title>
+    <link rel="stylesheet" href="subnetting.css" />
   </head>
-  <body id="body">
+  <body>
     <div class="title">Subnetting Tool</div>
     <br />
 
-    <div id="user-input">
-      <label for="subnet-radio">Subnet Form:</label>
-      <form id="subnet-radio" onchange="populateSubnetForm()">
+    <div id="user-inputs">
+      <label for="subnet-radio">Subnet Type:</label>
+      <form id="subnet-radio" onchange="completeHtmlPage()">
         <div>
           <input type="radio" name="subnetChoice" value="prefix" checked />
           <label for="subnet-prefix">Prefix</label>
@@ -71,7 +71,7 @@ Image Source: https://pngimg.com/
     <div id="errors">
       <img
         id="image-error"
-        src="img\exclamation_mark.png"
+        src="..\img\exclamation_mark.png"
         alt="ExclamationMark"
       />
       <p id="error"></p>
@@ -82,7 +82,8 @@ Image Source: https://pngimg.com/
     </div>
 
     <div id="octet-show">
-      <table id="table-ip-adress">
+      <p id="table-ip-address-info">Ip Address Table</p>
+      <table id="table-ip-address">
         <tr id="tipDouble">
           <th>128</th>
           <th>64</th>
@@ -164,6 +165,8 @@ Image Source: https://pngimg.com/
           <td>0</td>
         </tr>
       </table>
+
+      <p id="table-subnetmask-info">Subnet Mask Table</p>
 
       <table id="table-subnetmask">
         <tr id="tsDouble">
@@ -251,7 +254,7 @@ Image Source: https://pngimg.com/
 
     <div id="answers">
       <div id="answers-1">
-        <p id="subnet-mask-answer">The subnet mask is:</p>
+        <p id="subnet-mask-answer"></p>
         <p id="network-adress-answer">The network address is:</p>
         <p id="broadcast-adress-answer">The broadcast address is:</p>
         <p id="host-range-answer">The valid host addresses are:</p>
@@ -277,11 +280,11 @@ Image Source: https://pngimg.com/
           </div>
           <div>* "Enter" > run program</div>
         </div>
-        <div id="copyrght">(c) Elisei Florea</div>
+        <div id="copyright">(c) Elisei Florea</div>
       </div>
       <img
         id="image-question"
-        src="img\question_mark.png"
+        src="..\img\question_mark.png"
         alt="QuestionMark"
         onmouseover="showShortcuts(true)"
         onmouseout="showShortcuts(false)"
@@ -293,11 +296,11 @@ Image Source: https://pngimg.com/
     <script src="js/octets/octetTwo.js"></script>
     <script src="js/octets/octetThree.js"></script>
     <script src="js/octets/octetFour.js"></script>
-    <script src="js/shortcuts.js"></script>
-    <script src="js/errors.js"></script>
-    <script src="js/calculator.js"></script>
+    <script src="js/subnettingShortcuts.js"></script>
+    <script src="js/subnettingErrors.js"></script>
+    <script src="js/subnettingCalculator.js"></script>
     <script src="js/decimalToBinaryConverter.js"></script>
-    <script src="js/populateFields.js"></script>
-    <script src="js/script.js"></script>
+    <script src="js/subnettingPopulateFields.js"></script>
+    <script src="js/subnetting.js"></script>
   </body>
 </html>
