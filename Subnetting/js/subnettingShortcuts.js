@@ -53,10 +53,10 @@ addEventListener("keypress", function (b) {
 
 // pressing / anywhere on page >> edit subnet mask prefix
 addEventListener("keypress", function (c) {
-  if (c.key === "/") {
+  if (c.key === "/" && checkSubnettingChoice() == "prefix") {
     c.preventDefault();
     console.log("/ was pressed");
-    updateOctetsDatabase()[5].focus();
+    updateOctetsDatabase()[4].focus();
   }
 });
 

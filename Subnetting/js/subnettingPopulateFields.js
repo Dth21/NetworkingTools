@@ -467,6 +467,8 @@ function populateField32Subnet() {
 function populateShortcuts() {
   let subnetMaskShortcut = document.getElementById("shortcuts-subnet-mask");
   checkSubnettingChoice() == "prefix"
-    ? (subnetMaskShortcut.style.display = "none")
-    : (subnetMaskShortcut.style.display = "flex");
+    ? (subnetMaskShortcut.innerText =
+        "* ' / ' > edit the subnet prefix length.")
+    : (subnetMaskShortcut.innerText =
+        "* 'Shift+(5-8)' > edit a specific Subnet Mask Address octet.");
 }
