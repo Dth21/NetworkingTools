@@ -1,0 +1,101 @@
+<!--
+..... based on a method teached by Neil Anderson in his Udemy course "Cisco CCNA 200-30first – The Complete Guide to Getting Certified".
+For learning purposes. To be used for CISCO CCNA 200-30 exam.
+
+Image Source: https://pngimg.com/
+-->
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>SubnettingTool_02</title>
+    <link rel="stylesheet" href="subnettingDivision.css" />
+  </head>
+  <body>
+    <div class="title">Division of Subnet</div>
+    <br />
+
+    <div id="user-inputs">
+      <label for="subnet-radio">Subnet Type:</label>
+      <form id="subnet-radio" onchange="completeHtmlPage()">
+        <div>
+          <input type="radio" name="subnetChoice" value="prefix" checked />
+          <label for="subnet-prefix">Prefix</label>
+        </div>
+        <div>
+          <input type="radio" name="subnetChoice" value="address" />
+          <label for="subnet-address">Address</label>
+        </div>
+      </form>
+
+      <label for="user-input">Ip Adress / Subnet</label>
+      <form id="user-input" onchange="checkForInvalidValues()">
+        <input
+          type="number"
+          id="1-ip"
+          min="0"
+          max="255"
+          oninput="checkActiveField()"
+        />
+        <p>.</p>
+        <input
+          type="number"
+          id="2-ip"
+          min="0"
+          max="255"
+          oninput="checkActiveField()"
+        />
+        <p>.</p>
+        <input
+          type="number"
+          id="3-ip"
+          min="0"
+          max="255"
+          oninput="checkActiveField()"
+        />
+        <p>.</p>
+        <input type="number" id="4-ip" min="0" max="255" />
+        <p>/</p>
+        <div id="prefix-vs-address"></div>
+      </form>
+    </div>
+
+    <div id="errors">
+      <img
+        id="image-error"
+        src="..\img\exclamation_mark.png"
+        alt="ExclamationMark"
+      />
+      <p id="error"></p>
+    </div>
+
+    <div id="buttons">
+      <button id="calculate" onclick="runProgram()">Calculate</button>
+    </div>
+
+    <div id="informations">
+      <div id="text">
+        <div id="shortcuts">
+          <div style="font-weight: bold">Shortcuts:</div>
+          <div>* ' . ' > edit the next octet.</div>
+          <div>* ' Shift + (1-4) ' > edit a specific Ip Address octet.</div>
+          <div id="shortcuts-subnet-mask"></div>
+          <div>* ' Enter ' > run program</div>
+        </div>
+        <div id="copyright">(c) Elisei Florea</div>
+      </div>
+      <img
+        id="image-question"
+        src="..\img\question_mark.png"
+        alt="QuestionMark"
+        onmouseover="showShortcuts(true)"
+        onmouseout="showShortcuts(false)"
+      />
+    </div>
+    <script src="js/subnettingDivision_Calculator.js"></script>
+    <script src="js/subnettingDivision_Shortcuts.js"></script>
+    <script src="js/subnettingDivision_Errors.js"></script>
+    <script src="js/subnet_address_vs_prefix.js"></script>
+    <script src="js/subnettingDivision.js"></script>
+  </body>
+</html>

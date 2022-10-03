@@ -18,6 +18,7 @@ let binaryCodeDiv = document.getElementById("binary-code");
 let error = document.getElementById("error");
 
 function calculate() {
+<<<<<<< Updated upstream
   if (number.value === "") {
     error.style.visibility = "visible";
     error.innerText = "Please input a number";
@@ -29,6 +30,14 @@ function calculate() {
 
     // keeps the number input by user intact for final checkup
     numberDouble = number.value;
+=======
+  let solution = document.getElementById("converted-number");
+  let binary = "";
+
+  numberDouble = number.value; // keeps the number input by user intact for final checkup
+  createArray();
+  createSolutionArray();
+>>>>>>> Stashed changes
 
     createArray();
     createSecondArray();
