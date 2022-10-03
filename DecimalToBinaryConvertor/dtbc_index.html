@@ -7,29 +7,26 @@ in his Udemy course "Cisco CCNA 200-301 – The Complete Guide to Getting Certif
 <html>
   <head>
     <title>Decimal to Binary Convertor</title>
-    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="dtbc_style.css" />
   </head>
-  <body id="body">
-    <div class="title">Decimal to Binary Convertor</div>
-    <br />
+  <body>
+    <div id="calculator-box">
+      <div id="title">Decimal to Binary Convertor</div>
 
-    <div class="user-input">
-      <label for="userInput">Input number to convert:</label>
-      <input type="number" id="userInput" name="number-to-convert" />
-      <br />
-      <p id="error"></p>
+      <div id="user-input">
+        <p>Input decimal number to convert:</p>
+        <input type="number" id="userInput" name="number-to-convert" />
+      </div>
       <div id="buttons">
         <button id="calculate" onclick="calculate()">Calculate</button>
-        <button id="reset" onclick="resetPage()">Reset</button>
+      </div>
+
+      <div id="solution">
+        <p>Binary:</p>
+        <p id="converted-number"></p>
       </div>
     </div>
-
-    <div id="multipliers"></div>
-    <br />
-    <div id="binary-code"></div>
-
-    <script src="script.js"></script>
-    <script src="calculator.js"></script>
-    <script src="showResults.js"></script>
+    <script src="dtbc_script.js"></script>
+    <script src="dtbc_calculator.js"></script>
   </body>
 </html>

@@ -7,7 +7,7 @@ function createArray() {
   do {
     double = double * 2;
     list.push(double);
-  } while (double < numberDouble);
+  } while (double <= numberDouble);
 
   for (let caRunner = list.length - 1; caRunner >= 0; caRunner--) {
     reversedList.push(list[caRunner]);
@@ -15,7 +15,7 @@ function createArray() {
 }
 
 // it calculates the binary code
-function createSecondArray() {
+function createSolutionArray() {
   resultsArray = [];
   differenceArray = [];
   for (let csaRunner = 0; csaRunner < reversedList.length; csaRunner++) {
@@ -33,4 +33,6 @@ function createSecondArray() {
     resultsArray.push(result);
     differenceArray.push(difference);
   }
+
+  console.log(resultsArray);
 }
