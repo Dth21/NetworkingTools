@@ -3,6 +3,7 @@ This calculator uses a method of conversion teached by Neil Anderson
 in his Udemy course "Cisco CCNA 200-301 – The Complete Guide to Getting Certified"
 
 Created by Elisei Florea
+CSS Box Shaddows created by Material on https://getcssscan.com/
 -->
 
 <!DOCTYPE html>
@@ -11,27 +12,22 @@ Created by Elisei Florea
     <title>Decimal to Binary Convertor</title>
     <link rel="stylesheet" href="dtbc_style.css" />
   </head>
-  <body id="body">
-    <div class="title">Decimal to Binary Convertor</div>
-    <br />
+  <body>
+    <div id="title">Decimal to Binary Convertor</div>
 
-    <div class="user-input">
+    <div id="user-input">
       <label for="userInput">Input number to convert:</label>
       <input type="number" id="userInput" name="number-to-convert" />
-      <br />
-      <p id="error"></p>
-      <div id="buttons">
-        <button id="calculate" onclick="calculate()">Calculate</button>
-        <button id="reset" onclick="resetPage()">Reset</button>
-      </div>
     </div>
 
-    <div id="multipliers"></div>
-    <br />
-    <div id="binary-code"></div>
+    <button id="calculate" onclick="calculate()">Calculate</button>
+
+    <div id="solution-div">
+      <label for="solution">Binary:</label>
+      <input type="number" id="solution" value="" readonly />
+    </div>
 
     <script src="dtbc_script.js"></script>
     <script src="dtbc_calculator.js"></script>
-    <script src="dtbc_showResults.js"></script>
   </body>
 </html>

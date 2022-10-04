@@ -1,4 +1,9 @@
 // it creates the first set of values based on this formula: b=a*2 and then it reverses the list to be displayed
+function convertDecimalToBinary(numberDouble) {
+  createArray();
+  createSolutionArray();
+}
+
 function createArray() {
   list = [1];
   reversedList = [];
@@ -14,13 +19,8 @@ function createArray() {
   }
 }
 
-<<<<<<< Updated upstream
-// it calculates the binary code
-function createSecondArray() {
-=======
 // it calculates the binary code sending it into an array
 function createSolutionArray() {
->>>>>>> Stashed changes
   resultsArray = [];
   differenceArray = [];
   for (let csaRunner = 0; csaRunner < reversedList.length; csaRunner++) {
