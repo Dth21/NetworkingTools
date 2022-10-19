@@ -1,4 +1,4 @@
-// it creates the first set of values based on this formula: b=a*2 and then it reverses the list to be displayed
+// creates the first set of values based on this formula: b=a*2 =>> reverses the list to be displayed
 function convertDecimalToBinary(numberDouble) {
   createArray();
   createSolutionArray();
@@ -19,7 +19,7 @@ function createArray() {
   }
 }
 
-// it calculates the binary code sending it into an array
+// calculates the binary code sending it into an array
 function createSolutionArray() {
   resultsArray = [];
   differenceArray = [];

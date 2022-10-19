@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="description" content="Networking Tools" />
+    <meta
+      name="keywords"
+      content="HTML, CSS, JavaScript, jQuery, Networking, Subnetting, Convertor"
+    />
+    <meta name="author" content="Elisei Florea" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>Networking</title>
+    <link rel="icon" href="/img/EF_logo.png" type="image/gif" />
+
+    <link rel="stylesheet" href="main.css" />
+  </head>
+  <body onload="translate('en','lng-tag')">
+    <nav class="navbar">
+      <div id="identification">
+        <img id="logo" src="/img/EF_logo.png" />
+        <div id="nav-bar-title" lng-tag="nav-bar-title"></div>
+      </div>
+
+      <div class="menu">
+        <li>
+          <a
+            href="/about/about.html"
+            target="frame"
+            lng-tag="nav-bar-about"
+          ></a>
+        </li>
+        <li>
+          <a
+            href="/decimalToBinary/dtb.html"
+            target="frame"
+            lng-tag="nav-bar-dtb"
+          ></a>
+        </li>
+        <li>
+          <a
+            href="/subnetting/subnetting.html"
+            target="frame"
+            lng-tag="nav-bar-sub"
+          ></a>
+        </li>
+        <li>
+          <a
+            href="/contact/contact.html"
+            target="frame"
+            lng-tag="nav-bar-contact"
+          ></a>
+        </li>
+      </div>
+
+      <div id="languages">
+        <p class="language" id="enTranslator">EN</p>
+        <p class="language" id="roTranslator">RO</p>
+      </div>
+    </nav>
+
+    <div id="page">
+      <iframe
+        src="/about/about.html"
+        id="page-frame"
+        name="frame"
+        height="100%"
+        width="100%"
+      ></iframe>
+    </div>
+
+    <script
+      src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"
+      type="text/javascript"
+    ></script>
+
+    <script src="/translate/translateChild.js"></script>
+    <script src="/translate/translateParent.js"></script>
+    <script src="main.js"></script>
+  </body>
+</html>

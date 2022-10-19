@@ -13,7 +13,7 @@ body {
 
 .title {
   height: 10%;
-  margin-top: 50px;
+  margin-top: 25px;
   color: black;
   font-family: "Raleway", sans-serif;
   font-size: 62px;
@@ -199,13 +199,13 @@ th {
 }
 
 #tsDouble {
-  color: red;
-  background-color: aqua;
+  color: white;
+  background-color: teal;
 }
 
 #tipDouble {
-  color: red;
-  background-color: aqua;
+  color: white;
+  background-color: teal;
 }
 
 #answers {

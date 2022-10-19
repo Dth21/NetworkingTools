@@ -6,23 +6,24 @@ let errorOctet = 0;
 // shows error messages based on what octet needs to be changed
 function errorDatabase(error) {
   if (error == updateOctetsDatabase()[0]) {
-    return "The value of the first octet is wrong. Please insert a value between 0-255!";
+    // return "The value of the first octet is wrong. Please insert a value between 0-255!";
+    return "s-error-0";
   } else if (error == updateOctetsDatabase()[1]) {
-    return "The value of the second octet is wrong. Please insert a value between 0-255!";
+    return "s-error-1";
   } else if (error == updateOctetsDatabase()[2]) {
-    return "The value  the third octet is wrong. Please insert a value between 0-255!";
+    return "s-error-2";
   } else if (error == updateOctetsDatabase()[3]) {
-    return "The value of the forth octet is wrong. Please insert a value between 0-255!";
+    return "s-error-3";
   } else if (error == updateOctetsDatabase()[4]) {
-    return "The value of the subnet address prefix is wrong. Please insert a value between 0-32!";
+    return "s-error-4";
   } else if (error == updateOctetsDatabase()[5]) {
-    return "The value of the first octet of subnet mask address is wrong.";
+    return "s-error-5";
   } else if (error == updateOctetsDatabase()[6]) {
-    return "The value of the second octet of subnet mask address is wrong.";
+    return "s-error-6";
   } else if (error == updateOctetsDatabase()[7]) {
-    return "The value of the third octet of subnet mask address is wrong.";
+    return "s-error-7";
   } else if (error == updateOctetsDatabase()[8]) {
-    return "The value of the forth octet of subnet mask address is wrong.";
+    return "s-error-8";
   }
 }
 
@@ -30,7 +31,19 @@ function errorDatabase(error) {
 function showError(fieldToFocus) {
   error.style.visibility = "visible";
   errorImage.style.visibility = "visible";
-  error.innerText = errorDatabase(fieldToFocus);
+  error.setAttribute("lng-tag", errorDatabase(fieldToFocus));
+
+  // Update translation after user change.
+  // After updating lng-tag in SubnettingPopulateFields
+  // you have to do a new search in JSON for the new tag
+  language = $("html").prop("lang");
+
+  if (language == "en") {
+    translateIframe("en", "lng-tag");
+  } else if (language == "ro") {
+    translateIframe("ro", "lng-tag");
+  }
+
   fieldToFocus.focus();
 }
 

@@ -1,0 +1,49 @@
+<!--
+This calculator uses a method of conversion teached by Neil Anderson 
+in his Udemy course "Cisco CCNA 200-301 – The Complete Guide to Getting Certified"
+
+Created by Elisei Florea
+CSS Box Shaddows created by Material on https://getcssscan.com/
+-->
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="description" content="Decimal To Binary Convertor" />
+    <meta name="keywords" content="HTML, CSS, JavaScript, jQuery" />
+    <meta name="author" content="Elisei Florea" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>Decimal to Binary Convertor</title>
+    <link rel="stylesheet" href="dtb.css" />
+  </head>
+  <body onload="translateIframe('en','lng-tag')"></body>
+    <div id="title" lng-tag="dtb-title"></div>
+
+    <div id="user-input">
+      <label for="userInput" lng-tag="dtb-input"></label>
+      <input type="number" id="userInput" name="number-to-convert" />
+    </div>
+
+    <button id="calculate" onclick="calculate()" lng-tag="dtb-calculator">
+      Calculate
+    </button>
+
+    <div id="solution-div">
+      <label for="solution" lng-tag="dtb-solution"></label>
+      <input type="number" id="solution" value="" readonly />
+    </div>
+
+    <script
+      src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"
+      type="text/javascript"
+    ></script>
+
+    <script src="../translate/translateChild.js"></script>
+    <script src="../translate/translateParent.js"></script>
+
+    <script src="dtb.js"></script>
+    <script src="dtb_calculator.js"></script>
+  </body>
+</html>

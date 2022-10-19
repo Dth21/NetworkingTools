@@ -21,10 +21,10 @@ function checkSubnettingChoice() {
 
 // creates subnet mask forms based on user choice
 function completeHtmlPage() {
-  //complete answer text based on user choice (address / prefix)
+  //complete answer table text based on user choice (address / prefix)
   checkSubnettingChoice() == "prefix"
-    ? (subnetMaskAnswer.innerText = "The subnet mask address is:")
-    : (subnetMaskAnswer.innerText = "The subnet mask prefix is:");
+    ? subnetMaskAnswer.setAttribute("lng-tag", "s-ans-sm-v1")
+    : subnetMaskAnswer.setAttribute("lng-tag", "s-ans-sm-v2");
 
   //create div if subnet mask = prefix
   let subnetDivPrefix = document.createElement("div");
@@ -109,4 +109,15 @@ function completeHtmlPage() {
   populateShortcuts();
 
   userSubnetFormChanges++;
+
+  // Update translation after user change.
+  // After updating lng-tag in SubnettingPopulateFields
+  // you have to do a new search in JSON for the new tag
+  language = $("html").prop("lang");
+
+  if (language == "en") {
+    translateIframe("en", "lng-tag");
+  } else if (language == "ro") {
+    translateIframe("ro", "lng-tag");
+  }
 }
